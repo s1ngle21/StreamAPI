@@ -1,16 +1,13 @@
-package task5;
-
 import java.time.LocalDateTime;
 
-public class Product3 {
+public class Product {
     private int id;
     private String type;
     private double price;
     private boolean discount;
     private LocalDateTime addingDate;
 
-    public Product3(int id, String type, double price, boolean discount, LocalDateTime addingDate) {
-        this.id = id;
+    public Product(String type, double price, boolean discount, LocalDateTime addingDate) {
         this.type = type;
         this.price = price;
         this.discount = discount;
