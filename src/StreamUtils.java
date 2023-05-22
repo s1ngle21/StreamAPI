@@ -34,25 +34,22 @@ public class StreamUtils {
 
     public static double getPrice(List<Product> products) {
         double price = products.stream()
-                .filter(product2 -> product2.getPrice() < 75 && product2.getType().equals("Book") &&
-                        product2.getAddingDate().getYear() == LocalDateTime.now().getYear())
-                .mapToDouble((Product product2) -> product2.getPrice())
+                .filter(product -> product.getPrice() <= 75 && product.getType().equals("Book") &&
+                        product.getCreatedAt().getYear() == LocalDateTime.now().getYear())
+                .mapToDouble(Product::getPrice)
                 .reduce(Double::sum)
                 .getAsDouble();
 
         return price;
     }
 
+
     public static List<Product> getThreeLastByDate(List<Product> products) {
-        List<Product> lastThree = products.stream()
-                .max(Comparator.comparing(Product::getAddingDate))
-                .map(latestProduct -> products.stream()
-                        .filter(product -> product.getAddingDate().isBefore(latestProduct.getAddingDate().plusSeconds(1)))
-                        .sorted(Comparator.comparing(Product::getAddingDate).reversed())
-                        .limit(3)
-                        .collect(Collectors.toList()))
-                .orElseThrow();
-        return lastThree;
+        List<Product> copiedProducts = new ArrayList<>(products);
+        return copiedProducts.stream()
+                .sorted(Comparator.comparing(Product::getCreatedAt).reversed())
+                .limit(3)
+                .toList();
     }
 
     public static Map<String, List<Product>> getProductsByCategory(List<Product> products) {

@@ -5,24 +5,13 @@ public class Product {
     private String type;
     private double price;
     private boolean discount;
-    private LocalDateTime addingDate;
+    private LocalDateTime createdAt;
 
-    public Product(String type, double price, boolean discount, LocalDateTime addingDate) {
+    public Product(String type, double price, boolean discount, LocalDateTime createdAt) {
         this.type = type;
         this.price = price;
         this.discount = discount;
-        this.addingDate = addingDate;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                ", price=" + price +
-                ", discount=" + discount +
-                ", addingDate=" + addingDate +
-                "}\n";
+        this.createdAt = createdAt;
     }
 
     public int getId() {
@@ -57,11 +46,22 @@ public class Product {
         this.discount = discount;
     }
 
-    public LocalDateTime getAddingDate() {
-        return addingDate;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setAddingDate(LocalDateTime addingDate) {
-        this.addingDate = addingDate;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", price=" + price +
+                ", discount=" + discount +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }
